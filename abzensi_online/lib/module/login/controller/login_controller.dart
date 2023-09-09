@@ -21,8 +21,8 @@ class LoginController extends State<LoginView> {
 
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
-  String email = "";
-  String password = "";
+  String email = "user@demo.com";
+  String password = "123456";
   bool loading = false;
 
   doLogin() async {

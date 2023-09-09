@@ -24,6 +24,7 @@ class LoginView extends StatefulWidget {
                   label: "Email",
                   validator: Validator.email,
                   suffixIcon: Icons.email,
+                  value: controller.email,
                   onChanged: (value) {
                     controller.email = value;
                   },
@@ -33,6 +34,7 @@ class LoginView extends StatefulWidget {
                   obscure: true,
                   validator: Validator.required,
                   suffixIcon: Icons.password,
+                  value: controller.password,
                   onChanged: (value) {
                     controller.password = value;
                   },

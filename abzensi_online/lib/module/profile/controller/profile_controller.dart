@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hyper_ui/core.dart';
 import 'package:hyper_ui/service/auth_service/auth_service.dart';
+import 'package:hyper_ui/service/user_service/user_service.dart';
+import '../../../model/user/user.dart';
 import '../view/profile_view.dart';
 
 class ProfileController extends State<ProfileView> {
@@ -10,6 +12,7 @@ class ProfileController extends State<ProfileView> {
   @override
   void initState() {
     instance = this;
+    getUser();
     super.initState();
   }
 
@@ -25,5 +28,27 @@ class ProfileController extends State<ProfileView> {
     hideLoading();
 
     Get.offAll(LoginView());
+  }
+
+  User? user;
+  getUser() async {
+    user = await UserService().getUser();
+    photo = user?.photo;
+    name = user?.name;
+    setState(() {});
+  }
+
+  String? photo;
+  String? name;
+  updateUser() async {
+    await UserService().updateUser(
+      name: name,
+      photo: photo,
+    );
+    await getUser();
+
+    snackbarPrimary(
+      message: "Your data has been updated!",
+    );
   }
 }

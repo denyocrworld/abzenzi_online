@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hyper_ui/core.dart';
+import '../../../service/auth_service/auth_service.dart';
 import '../controller/profile_controller.dart';
 
 class ProfileView extends StatefulWidget {
@@ -7,6 +8,8 @@ class ProfileView extends StatefulWidget {
 
   Widget build(context, ProfileController controller) {
     controller.view = this;
+
+    // if (controller.user == null) return LoadingWidget();
 
     return Scaffold(
       appBar: AppBar(
@@ -24,11 +27,41 @@ class ProfileView extends StatefulWidget {
       ),
       body: SingleChildScrollView(
         child: Container(
-          padding: EdgeInsets.all(10.0),
+          padding: EdgeInsets.all(20.0),
           child: Column(
-            children: [],
+            children: [
+              if (controller.user != null) ...[
+                QImagePicker(
+                  label: "Photo",
+                  validator: Validator.required,
+                  value: controller.user?.photo,
+                  onChanged: (value) {
+                    controller.photo = value;
+                  },
+                ),
+                QTextField(
+                  label: "Name",
+                  validator: Validator.required,
+                  value: controller.user?.name,
+                  onChanged: (value) {
+                    controller.name = value;
+                  },
+                ),
+                QTextField(
+                  label: "Email",
+                  validator: Validator.required,
+                  value: controller.user?.email,
+                  enabled: false,
+                  onChanged: (value) {},
+                ),
+              ],
+            ],
           ),
         ),
+      ),
+      bottomNavigationBar: QActionButton(
+        label: "Save",
+        onPressed: () => controller.updateUser(),
       ),
     );
   }

@@ -1,15 +1,19 @@
 import '../../core.dart';
+import '../../env.dart';
+import '../../model/user/user.dart';
 
 class AuthService {
-  static Map currentUser = {};
-  static String get token => currentUser["token"];
+  // static Map currentUser = {};
+  static User? currentUser;
+  static String get token => currentUser!.token!;
+  static int get id => currentUser!.id!;
 
   login({
     required String email,
     required String password,
   }) async {
     var response = await Dio().post(
-      "http://127.0.0.1:8000/api/login",
+      "${Env.baseUrl}/api/login",
       options: Options(
         headers: {
           "Content-Type": "application/json",
@@ -24,14 +28,14 @@ class AuthService {
     Map obj = response.data;
 
     if (obj["success"] == true) {
-      currentUser = obj["data"];
+      currentUser = User.fromJson(obj["data"]);
     }
     return obj;
   }
 
   logout() async {
     await Dio().post(
-      "http://127.0.0.1:8000/api/logout",
+      "${Env.baseUrl}/api/logout",
       options: Options(
         headers: {
           "Content-Type": "application/json",
