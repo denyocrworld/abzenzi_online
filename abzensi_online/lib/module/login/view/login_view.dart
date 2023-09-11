@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:hyper_ui/core.dart';
-import '../controller/login_controller.dart';
 
 class LoginView extends StatefulWidget {
   LoginView({Key? key}) : super(key: key);

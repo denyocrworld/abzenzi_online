@@ -3,7 +3,6 @@ import 'package:hyper_ui/core.dart';
 import 'package:hyper_ui/service/auth_service/auth_service.dart';
 import 'package:hyper_ui/service/user_service/user_service.dart';
 import '../../../model/user/user.dart';
-import '../view/profile_view.dart';
 
 class ProfileController extends State<ProfileView> {
   static late ProfileController instance;
