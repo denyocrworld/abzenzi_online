@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hyper_ui/core.dart';
 
+import '../../../shared/widget/form/image_picker/camera_picker.dart';
+
 class ProfileView extends StatefulWidget {
   ProfileView({Key? key}) : super(key: key);
 
@@ -29,7 +31,7 @@ class ProfileView extends StatefulWidget {
           child: Column(
             children: [
               if (controller.user != null) ...[
-                QImagePicker(
+                QCameraPicker(
                   label: "Photo",
                   validator: Validator.required,
                   value: controller.user?.photo,
