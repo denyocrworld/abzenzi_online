@@ -1,3 +1,5 @@
+import 'package:hyper_ui/service/local_data_service/local_data_service.dart';
+
 import '../../core.dart';
 import '../../env.dart';
 import '../../model/user/user.dart';
@@ -5,7 +7,13 @@ import '../../model/user/user.dart';
 class AuthService {
   // static Map currentUser = {};
   static User? currentUser;
-  static String get token => currentUser!.token!;
+  static String? localStorageToken;
+
+  static String? get token {
+    if (localStorageToken != null) return localStorageToken;
+    return currentUser?.token;
+  }
+
   static int get id => currentUser!.id!;
 
   login({
