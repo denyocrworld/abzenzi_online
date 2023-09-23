@@ -125,4 +125,14 @@ class AttendanceController extends Controller
             ]
         ]);
     }
+
+    public function histories() {
+        $id = request()->user()["id"];
+        $attendanceService = new AttendanceService();
+        $attendanceHistories = $attendanceService->getHistories($id);
+        
+        return response()->json([
+            "data" => $attendanceHistories
+        ]);
+    }
 }

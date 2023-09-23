@@ -49,4 +49,10 @@ class AttendanceService
         $isCheckIn = count($todayAttendances) > 0;
         return $isCheckIn;
     }
+
+    public function getHistories($user_id)
+    {
+        $todayAttendances = Attendance::where("user_id", $user_id)->get();
+        return $todayAttendances;
+    }
 }
