@@ -15,7 +15,7 @@ class MainNavigationView extends StatefulWidget {
           index: controller.selectedIndex,
           children: [
             DashboardView(),
-            OrderView(),
+            AttendanceHistoryNavigationView(),
             FavoriteView(),
             ProfileView(),
           ],

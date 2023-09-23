@@ -1,7 +1,11 @@
 {
     "modules": [
         "login",
-        "location_disabled"
+        "location_disabled",
+        "caffe_dashboard",
+        "attendance_history_navigation",
+        "attendance_history_list",
+        "attendance_history_calendar"
     ],
     "module_directory_name": "module",
     "experimental_mode": false,

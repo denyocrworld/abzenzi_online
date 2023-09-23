@@ -84,4 +84,17 @@ class AttendanceService {
       return false;
     }
   }
+
+  Future<List> getHistories() async {
+    try {
+      var response = await Dio().get(
+        "${Env.baseUrl}/api/attendance/histories",
+        options: Env.options,
+      );
+      Map obj = response.data;
+      return obj["data"];
+    } on Exception catch (_) {
+      throw (_);
+    }
+  }
 }

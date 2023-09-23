@@ -55,6 +55,7 @@ class _MainAppState extends State<MainApp> {
       navigatorKey: Get.navigatorKey,
       debugShowCheckedModeBanner: false,
       theme: getDefaultTheme(),
+      // home: mainView,
       home: mainView,
       builder: (context, child) => DebugView(
         context: context,
