@@ -8,6 +8,7 @@ use App\Models\Attendance;
 use Illuminate\Support\Facades\Storage;
 use App\Services\AttendanceService;
 use App\Services\FaceRecognitionService;
+use App\Services\NotificationService;
 use Carbon\Carbon;
 
 class AttendanceController extends Controller
@@ -49,6 +50,9 @@ class AttendanceController extends Controller
                 'check_in_date' => Carbon::now(),
             ]);
         }
+
+        //seharusnya ada di dalam block if($is_recognized)
+        NotificationService::sendFCMNotificationToUser($id, "Berhasil check in hari ini!", "");
 
         return response()->json([
             'data' => [
@@ -126,11 +130,12 @@ class AttendanceController extends Controller
         ]);
     }
 
-    public function histories() {
+    public function histories()
+    {
         $id = request()->user()["id"];
         $attendanceService = new AttendanceService();
         $attendanceHistories = $attendanceService->getHistories($id);
-        
+
         return response()->json([
             "data" => $attendanceHistories
         ]);

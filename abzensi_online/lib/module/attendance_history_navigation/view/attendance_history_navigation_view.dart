@@ -9,7 +9,7 @@ class AttendanceHistoryNavigationView extends StatefulWidget {
     controller.view = this;
 
     return DefaultTabController(
-      length: 3,
+      length: 2,
       child: Scaffold(
         appBar: AppBar(
           bottom: const TabBar(

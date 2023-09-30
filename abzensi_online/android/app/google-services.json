@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "250162617408",
+    "project_id": "abzensi-online",
+    "storage_bucket": "abzensi-online.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:250162617408:android:9d38ea8664cb71c51f93a5",
+        "android_client_info": {
+          "package_name": "com.example.abzensi_online"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCS2U0StTBASRyzR2CibvYbmmtOZyDM7rs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

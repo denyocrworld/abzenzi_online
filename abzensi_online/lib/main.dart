@@ -1,12 +1,9 @@
 import 'package:geolocator/geolocator.dart';
 import 'package:hyper_ui/core.dart';
 import 'package:flutter/material.dart';
-import 'package:hyper_ui/service/local_data_service/local_data_service.dart';
-import 'package:hyper_ui/service/location_service/location_service.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await LocalDataService.init();
+  await initialize();
   runMainApp();
 }
 

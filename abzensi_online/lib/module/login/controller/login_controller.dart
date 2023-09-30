@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hyper_ui/core.dart';
 import 'package:hyper_ui/service/auth_service/auth_service.dart';
+import 'package:hyper_ui/service/notification_service/notification_service.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class LoginController extends State<LoginView> {
   static late LoginController instance;
@@ -44,6 +46,11 @@ class LoginController extends State<LoginView> {
       String message = obj["data"]["message"];
       showInfoDialog(message);
       return;
+    }
+
+    if (await Permission.notification.request().isGranted) {
+      await NotificationService().initNotifications();
+      await NotificationService().getToken();
     }
 
     Get.offAll(MainNavigationView());

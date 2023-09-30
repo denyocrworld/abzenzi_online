@@ -3,7 +3,7 @@ import 'package:hyper_ui/service/auth_service/auth_service.dart';
 import 'core.dart';
 
 class Env {
-  static String baseUrl = "http://192.168.1.6:8000";
+  static String baseUrl = "http://192.168.1.3:8000";
 
   static Options get options {
     return Options(
