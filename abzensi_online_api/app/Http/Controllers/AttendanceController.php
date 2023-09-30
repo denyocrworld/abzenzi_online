@@ -49,10 +49,9 @@ class AttendanceController extends Controller
                 'check_in_photo' => $url,
                 'check_in_date' => Carbon::now(),
             ]);
-        }
 
-        //seharusnya ada di dalam block if($is_recognized)
-        NotificationService::sendFCMNotificationToUser($id, "Berhasil check in hari ini!", "");
+            NotificationService::sendFCMNotificationToUser($id, "Berhasil check in hari ini!", "");
+        }
 
         return response()->json([
             'data' => [
@@ -97,6 +96,8 @@ class AttendanceController extends Controller
                 'check_out_photo' => $url,
                 'check_out_date' => Carbon::now(),
             ]);
+
+            NotificationService::sendFCMNotificationToUser($id, "Berhasil check in hari ini!", "");
         }
 
         return response()->json([
