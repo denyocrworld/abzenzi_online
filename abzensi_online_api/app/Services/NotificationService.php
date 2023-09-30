@@ -20,12 +20,10 @@ class NotificationService
     static public function sendFCMNotification($fcmToken, $title, $body, $data = [])
     {
         $url = 'https://fcm.googleapis.com/v1/projects/abzensi-online/messages:send';
-
         $headers = [
             'Authorization' => 'Bearer ' . NotificationService::getAccessTokenFromServiceAccount(),
             'Content-Type' => 'application/json',
         ];
-
         $payload = [
             'message' => [
                 'token' => $fcmToken,
@@ -41,7 +39,6 @@ class NotificationService
         ];
 
         $response = Http::withHeaders($headers)->post($url, $payload);
-
         return $response->json();
     }
 
