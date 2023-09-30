@@ -1,10 +1,12 @@
 <?php
+
 use App\Http\Controllers\UserApiController;
 use App\Http\Controllers\ProductApiController;
 use App\Http\Controllers\CustomerApiController;
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AttendanceController;
+use App\Http\Controllers\UserTokenController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +33,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/attendance/is-check-in-today', [AttendanceController::class, 'isCheckInToday']);
     Route::post('/attendance/is-check-out-today', [AttendanceController::class, 'isCheckOutToday']);
     Route::get('/attendance/histories', [AttendanceController::class, 'histories']);
+
+    Route::post('/tokens', [UserTokenController::class, 'store']);
 });
 
 
@@ -41,3 +45,9 @@ Route::prefix('users')->middleware('auth:sanctum')->group(function () {
     Route::put('{id}', [UserApiController::class, 'update']);
     Route::delete('{id}', [UserApiController::class, 'destroy']);
 });
+
+//api/user-tokens
+
+// Route::resource('user-tokens', UserTokenController::class)->only([
+//     'store', 'show', 'update', 'destroy'
+// ]);
