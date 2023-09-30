@@ -44,8 +44,14 @@ class DashboardController extends State<DashboardView> {
   String? photo;
   checkIn() async {
     if (isCheckInToday) return;
+    if (photo == null) {
+      showInfoDialog("Kamu harus photo dulu!");
+      return;
+    }
+
     showLoading();
     bool isRecognized = await AttendanceService().checkin(photo: photo!);
+    await getCheckInTodayStatus();
     hideLoading();
 
     if (!isRecognized) {

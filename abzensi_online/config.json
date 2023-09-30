@@ -5,7 +5,8 @@
         "caffe_dashboard",
         "attendance_history_navigation",
         "attendance_history_list",
-        "attendance_history_calendar"
+        "attendance_history_calendar",
+        "safe_device_info"
     ],
     "module_directory_name": "module",
     "experimental_mode": false,

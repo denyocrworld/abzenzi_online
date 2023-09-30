@@ -20,23 +20,35 @@ class MainApp extends StatefulWidget {
 
 class _MainAppState extends State<MainApp> {
   bool ready = false;
+  bool isNotSafeDevice = false;
   Position? position;
   late LocationServiceResponse locationServiceResponse;
+
   @override
   void initState() {
-    getLocation();
+    initData();
     super.initState();
+  }
+
+  initData() async {
+    await getDeviceStatus();
+    await getLocation();
+    ready = true;
+    setState(() {});
   }
 
   getLocation() async {
     locationServiceResponse = await LocationService.getCurrentLocation();
     position = locationServiceResponse.position;
-    ready = true;
-    setState(() {});
+  }
+
+  getDeviceStatus() async {
+    isNotSafeDevice = await SecurityService.isNotSaveDevice();
   }
 
   Widget get mainView {
     if (!ready) return Container();
+    if (isNotSafeDevice) return SafeDeviceInfoView();
     if (position == null)
       return LocationDisabledView(
         locationServiceResponse: locationServiceResponse,

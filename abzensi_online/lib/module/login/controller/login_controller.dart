@@ -40,17 +40,19 @@ class LoginController extends State<LoginView> {
     );
     bool isSuccess = obj["success"] == true;
 
+    if (isSuccess) {
+      if (await Permission.notification.request().isGranted) {
+        await NotificationService().initNotifications();
+        await NotificationService().getToken();
+      }
+    }
+
     hideLoading();
 
     if (!isSuccess) {
       String message = obj["data"]["message"];
       showInfoDialog(message);
       return;
-    }
-
-    if (await Permission.notification.request().isGranted) {
-      await NotificationService().initNotifications();
-      await NotificationService().getToken();
     }
 
     Get.offAll(MainNavigationView());

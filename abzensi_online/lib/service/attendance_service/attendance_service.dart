@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:hyper_ui/env.dart';
 import 'package:hyper_ui/service/auth_service/auth_service.dart';
 import 'package:hyper_ui/service/device_service/device_service.dart';
