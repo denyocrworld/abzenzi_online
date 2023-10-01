@@ -98,4 +98,13 @@ class AttendanceService {
       throw (_);
     }
   }
+
+  Future resetToday() async {
+    try {
+      await Dio().post(
+        "${Env.baseUrl}/api/attendance/reset-today",
+        options: Env.options,
+      );
+    } on Exception catch (_) {}
+  }
 }

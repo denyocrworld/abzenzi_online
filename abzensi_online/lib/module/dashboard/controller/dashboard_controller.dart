@@ -92,4 +92,15 @@ class DashboardController extends State<DashboardView> {
 
     showInfoDialog("Berhasil checkout!");
   }
+
+  resetToday() async {
+    showLoading();
+    await AttendanceService().resetToday();
+    await Future.wait([
+      getCheckInTodayStatus(),
+      getCheckOutTodayStatus(),
+    ]);
+    hideLoading();
+    setState(() {});
+  }
 }

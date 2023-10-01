@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:hyper_ui/shared/widget/form/image_picker/camera_picker.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:flutter/material.dart';
@@ -82,7 +83,7 @@ class DashboardView extends StatefulWidget {
                     child: FlutterMap(
                       options: MapOptions(
                         center: LatLng(
-                          controller.position!.latitude,
+                          controller.position!.latitude - 0.0020,
                           controller.position!.longitude,
                         ),
                         zoom: 16,
@@ -149,6 +150,22 @@ class DashboardView extends StatefulWidget {
                               ),
                             ],
                           ),
+                          if (kDebugMode)
+                            InkWell(
+                              onTap: () => controller.resetToday(),
+                              child: Container(
+                                margin: const EdgeInsets.only(
+                                  top: 12.0,
+                                ),
+                                child: Text(
+                                  "Reset",
+                                  style: TextStyle(
+                                    fontSize: 12.0,
+                                    color: Colors.red,
+                                  ),
+                                ),
+                              ),
+                            ),
                         ],
                       ),
                     ),
