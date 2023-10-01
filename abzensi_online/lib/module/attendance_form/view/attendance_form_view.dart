@@ -21,34 +21,17 @@ class AttendanceFormView extends StatefulWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Dashboard"),
+        title: Text("Absensi Online"),
         actions: [
-          Padding(
-            padding: EdgeInsets.all(8.0),
-            child: Center(
-              child: Badge(
-                label: Text(
-                  "6",
-                  style: TextStyle(
-                    color: Colors.white,
-                  ),
-                ),
-                child: Icon(MdiIcons.chatQuestion),
-              ),
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.all(8.0),
-            child: Center(
-              child: Badge(
-                label: Text(
-                  "3",
-                  style: TextStyle(
-                    color: Colors.white,
-                  ),
-                ),
-                child: Icon(Icons.notifications),
-              ),
+          IconButton(
+            onPressed: () {
+              showInfoDialog(
+                "Pastikan kamu foto di tempat yang terang.",
+              );
+            },
+            icon: const Icon(
+              Icons.info,
+              size: 24.0,
             ),
           ),
         ],

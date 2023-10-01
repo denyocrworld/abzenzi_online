@@ -34,6 +34,7 @@ Future showInfoDialog(String message) async {
                         ),
                         Text(
                           message,
+                          textAlign: TextAlign.center,
                           style: const TextStyle(
                             fontSize: 14.0,
                           ),
@@ -43,7 +44,7 @@ Future showInfoDialog(String message) async {
                         ),
                         ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.blueGrey,
+                            backgroundColor: primaryColor,
                           ),
                           onPressed: () => Get.back(),
                           child: const Text("Ok"),
@@ -54,7 +55,7 @@ Future showInfoDialog(String message) async {
                 ],
               ),
             ),
-          ).animate().fade().shake(),
+          ).animate().scale().shake().fadeIn(),
         ),
       );
     },

@@ -18,14 +18,19 @@ class DashboardMenu extends StatelessWidget {
       },
       {
         "label": "Cuti",
-        "icon": MdiIcons.layersRemove,
+        "icon": Icons.event_note,
         "view": AttendanceFormView(),
       },
       {
         "label": "Izin",
-        "icon": Icons.holiday_village,
+        "icon": Icons.event_busy,
         "view": AttendanceFormView(),
-      }
+      },
+      {
+        "label": "Event",
+        "icon": Icons.event,
+        "view": AttendanceFormView(),
+      },
     ];
     return GridView.builder(
       padding: const EdgeInsets.all(20.0),
