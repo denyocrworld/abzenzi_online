@@ -55,4 +55,9 @@ class AttendanceService
         $todayAttendances = Attendance::where("user_id", $user_id)->get();
         return $todayAttendances;
     }
+
+    public function resetToday($user_id)
+    {
+        return Attendance::where("user_id", $user_id)->delete();
+    }
 }

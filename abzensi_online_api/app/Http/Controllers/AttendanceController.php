@@ -40,21 +40,18 @@ class AttendanceController extends Controller
         $is_recognized = FaceRecognitionService::recognize($user_face, $user_uploaded_face);
 
         if ($is_recognized) {
-            // $attendanceService = new AttendanceService();
-            // $attendanceService->checkIn([
-            //     'user_id' => $id,
-            //     'check_in_device_id' => $data['check_in_device_id'],
-            //     'check_in_latitude' => $data['check_in_latitude'],
-            //     'check_in_longitude' => $data['check_in_longitude'],
-            //     //TODO: ini seharusnya ngambil dari field photo dari Users
-            //     'check_in_photo' => $url,
-            //     'check_in_date' => Carbon::now(),
-            // ]);
+            $attendanceService = new AttendanceService();
+            $attendanceService->checkIn([
+                'user_id' => $id,
+                'check_in_device_id' => $data['check_in_device_id'],
+                'check_in_latitude' => $data['check_in_latitude'],
+                'check_in_longitude' => $data['check_in_longitude'],
+                //TODO: ini seharusnya ngambil dari field photo dari Users
+                'check_in_photo' => $url,
+                'check_in_date' => Carbon::now(),
+            ]);
 
-            //NotificationService::sendFCMNotificationToUser($id, "Berhasil check in hari ini!", "");
-            Log::info('Recognized?');
-        } else {
-            Log::error('Not Recognized?');
+            NotificationService::sendFCMNotificationToUser($id, "Berhasil check in hari ini!", "");
         }
 
         return response()->json([
@@ -143,6 +140,18 @@ class AttendanceController extends Controller
 
         return response()->json([
             "data" => $attendanceHistories
+        ]);
+    }
+
+    public function resetToday()
+    {
+        $id = request()->user()["id"];
+        $attendanceService = new AttendanceService();
+        $attendanceService->resetToday($id);
+        return response()->json([
+            "data" => [
+                "message" => "OK"
+            ]
         ]);
     }
 }

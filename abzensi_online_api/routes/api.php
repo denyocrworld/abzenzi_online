@@ -33,6 +33,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/attendance/is-check-in-today', [AttendanceController::class, 'isCheckInToday']);
     Route::post('/attendance/is-check-out-today', [AttendanceController::class, 'isCheckOutToday']);
     Route::get('/attendance/histories', [AttendanceController::class, 'histories']);
+    Route::post('/attendance/reset-today', [AttendanceController::class, 'resetToday']);
 
     Route::post('/tokens', [UserTokenController::class, 'store']);
 });
