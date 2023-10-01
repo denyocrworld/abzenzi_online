@@ -37,9 +37,9 @@ class MainNavigationView extends StatefulWidget {
                     color: Colors.white,
                   ),
                 ),
-                child: Icon(MdiIcons.table),
+                child: Icon(MdiIcons.history),
               ),
-              label: "Order",
+              label: "Histories",
             ),
             BottomNavigationBarItem(
               icon: Icon(
