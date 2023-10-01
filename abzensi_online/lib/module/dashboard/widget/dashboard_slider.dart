@@ -2,6 +2,7 @@
 
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:hyper_ui/core.dart';
 
 class DashboardSlider extends StatefulWidget {
@@ -84,6 +85,13 @@ class _DashboardSliderState extends State<DashboardSlider> {
           ),
         ],
       );
-    });
+    })
+        .animate()
+        .scale(
+          duration: 600.ms,
+        )
+        .fadeIn(
+          duration: 1200.ms,
+        );
   }
 }

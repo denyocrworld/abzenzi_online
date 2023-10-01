@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+import 'package:hyper_ui/module/dashboard/widget/dashboard_menu.dart';
 import 'package:hyper_ui/module/dashboard/widget/dashboard_slider.dart';
 import 'package:hyper_ui/shared/app/widget/logo/logo.dart';
 import 'package:hyper_ui/shared/widget/form/image_picker/camera_picker.dart';
@@ -29,6 +30,7 @@ class DashboardView extends StatefulWidget {
         child: const Column(
           children: [
             DashboardSlider(),
+            DashboardMenu(),
           ],
         ),
       ),
