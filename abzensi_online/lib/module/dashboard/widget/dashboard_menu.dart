@@ -10,6 +10,13 @@ class DashboardMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    List menus = [
+      {
+        "label": "Absensi",
+        "icon": MdiIcons.faceRecognition,
+        "view": AttendanceFormView(),
+      }
+    ];
     return GridView.builder(
       padding: const EdgeInsets.all(20.0),
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -18,31 +25,35 @@ class DashboardMenu extends StatelessWidget {
         mainAxisSpacing: 6,
         crossAxisSpacing: 6,
       ),
-      itemCount: 6,
+      itemCount: menus.length,
       shrinkWrap: true,
       physics: ScrollPhysics(),
       itemBuilder: (BuildContext context, int index) {
-        return Container(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(
-                MdiIcons.faceRecognition,
-                size: 48.0,
-                color: primaryColor,
-              ),
-              const SizedBox(
-                height: 8.0,
-              ),
-              Text(
-                "Absensi",
-                overflow: TextOverflow.ellipsis,
-                style: TextStyle(
-                  fontSize: 14.0,
+        var item = menus[index];
+        return InkWell(
+          onTap: () => Get.to(AttendanceFormView()),
+          child: Container(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  item["icon"],
+                  size: 48.0,
                   color: primaryColor,
                 ),
-              ),
-            ],
+                const SizedBox(
+                  height: 8.0,
+                ),
+                Text(
+                  item["label"],
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    fontSize: 14.0,
+                    color: primaryColor,
+                  ),
+                ),
+              ],
+            ),
           ),
         )
             .animate()
