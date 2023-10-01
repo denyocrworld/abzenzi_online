@@ -5,7 +5,6 @@ import 'package:material_design_icons_flutter/material_design_icons_flutter.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:hyper_ui/shared/theme/theme_config.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class QLogo extends StatelessWidget {
   final double? width;
