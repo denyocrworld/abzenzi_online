@@ -25,8 +25,10 @@ class MainNavigationView extends StatefulWidget {
           selectedItemColor: primaryColor,
           items: [
             BottomNavigationBarItem(
-              icon: Icon(
-                MdiIcons.viewDashboard,
+              icon: Container(
+                child: Icon(
+                  MdiIcons.viewDashboard,
+                ),
               ),
               label: "Dashboard",
             ),
