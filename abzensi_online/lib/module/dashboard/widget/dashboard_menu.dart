@@ -15,6 +15,16 @@ class DashboardMenu extends StatelessWidget {
         "label": "Absensi",
         "icon": MdiIcons.faceRecognition,
         "view": AttendanceFormView(),
+      },
+      {
+        "label": "Cuti",
+        "icon": MdiIcons.layersRemove,
+        "view": AttendanceFormView(),
+      },
+      {
+        "label": "Izin",
+        "icon": Icons.holiday_village,
+        "view": AttendanceFormView(),
       }
     ];
     return GridView.builder(

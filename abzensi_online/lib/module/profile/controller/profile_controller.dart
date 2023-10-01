@@ -40,13 +40,15 @@ class ProfileController extends State<ProfileView> {
   String? photo;
   String? name;
   updateUser() async {
+    showLoading();
     await UserService().updateUser(
       name: name,
       photo: photo,
     );
     await getUser();
+    hideLoading();
 
-    snackbarPrimary(
+    snackbarInfo(
       message: "Your data has been updated!",
     );
   }
