@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
@@ -37,7 +39,7 @@ class NotificationService {
     if (isFlutterLocalNotificationsInitialized) {
       return;
     }
-    channel = const AndroidNotificationChannel(
+    channel = AndroidNotificationChannel(
       'high_importance_channel',
       'High Importance Notifications',
       description: 'This channel is used for important notifications.',
@@ -75,6 +77,45 @@ class NotificationService {
         ),
       );
     }
+  }
+
+  Future<Uint8List> getByteArrayFromUrl(String url) async {
+    final response = await Dio().get(url);
+    return response.data;
+  }
+
+  Future<void> showFlutterNotificationWithImage(RemoteMessage message) async {
+    final ByteArrayAndroidBitmap largeIcon = ByteArrayAndroidBitmap(
+        await getByteArrayFromUrl('https://dummyimage.com/48x48'));
+    final ByteArrayAndroidBitmap bigPicture = ByteArrayAndroidBitmap(
+        await getByteArrayFromUrl('https://dummyimage.com/400x800'));
+
+    final BigPictureStyleInformation bigPictureStyleInformation =
+        BigPictureStyleInformation(
+      bigPicture,
+      largeIcon: largeIcon,
+      contentTitle: message.notification?.title,
+      htmlFormatContentTitle: true,
+      summaryText: message.notification?.title,
+      htmlFormatSummaryText: true,
+    );
+
+    final AndroidNotificationDetails androidNotificationDetails =
+        AndroidNotificationDetails(
+      'big text channel id',
+      'big text channel name',
+      channelDescription: 'big text channel description',
+      styleInformation: bigPictureStyleInformation,
+    );
+    final NotificationDetails notificationDetails =
+        NotificationDetails(android: androidNotificationDetails);
+
+    await flutterLocalNotificationsPlugin.show(
+      Random().nextInt(1000),
+      'big text title',
+      'silent body',
+      notificationDetails,
+    );
   }
 
   saveToken(String fcmToken) async {
