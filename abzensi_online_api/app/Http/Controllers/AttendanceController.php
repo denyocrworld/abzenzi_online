@@ -10,6 +10,7 @@ use App\Services\AttendanceService;
 use App\Services\FaceRecognitionService;
 use App\Services\NotificationService;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Log;
 
 class AttendanceController extends Controller
 {
@@ -39,18 +40,21 @@ class AttendanceController extends Controller
         $is_recognized = FaceRecognitionService::recognize($user_face, $user_uploaded_face);
 
         if ($is_recognized) {
-            $attendanceService = new AttendanceService();
-            $attendanceService->checkIn([
-                'user_id' => $id,
-                'check_in_device_id' => $data['check_in_device_id'],
-                'check_in_latitude' => $data['check_in_latitude'],
-                'check_in_longitude' => $data['check_in_longitude'],
-                //TODO: ini seharusnya ngambil dari field photo dari Users
-                'check_in_photo' => $url,
-                'check_in_date' => Carbon::now(),
-            ]);
+            // $attendanceService = new AttendanceService();
+            // $attendanceService->checkIn([
+            //     'user_id' => $id,
+            //     'check_in_device_id' => $data['check_in_device_id'],
+            //     'check_in_latitude' => $data['check_in_latitude'],
+            //     'check_in_longitude' => $data['check_in_longitude'],
+            //     //TODO: ini seharusnya ngambil dari field photo dari Users
+            //     'check_in_photo' => $url,
+            //     'check_in_date' => Carbon::now(),
+            // ]);
 
-            NotificationService::sendFCMNotificationToUser($id, "Berhasil check in hari ini!", "");
+            //NotificationService::sendFCMNotificationToUser($id, "Berhasil check in hari ini!", "");
+            Log::info('Recognized?');
+        } else {
+            Log::error('Not Recognized?');
         }
 
         return response()->json([
@@ -97,7 +101,7 @@ class AttendanceController extends Controller
                 'check_out_date' => Carbon::now(),
             ]);
 
-            NotificationService::sendFCMNotificationToUser($id, "Berhasil check in hari ini!", "");
+            NotificationService::sendFCMNotificationToUser($id, "Berhasil check out hari ini!", "");
         }
 
         return response()->json([

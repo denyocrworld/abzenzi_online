@@ -61,7 +61,8 @@ class _QCameraPickerState extends State<QCameraPicker> {
     XFile? image = await ImagePicker().pickImage(
       source: ImageSource.camera,
       preferredCameraDevice: CameraDevice.front,
-      imageQuality: 20,
+      imageQuality: 60,
+      maxWidth: 256,
     );
     String? filePath = image?.path;
     if (filePath == null) return null;

@@ -18,7 +18,7 @@ class UserTokenController extends Controller
 
         $currentUserToken = UserToken::where("token", $data['token'])->first();
         if (!$currentUserToken) {
-            $token = UserToken::create($data);
+            UserToken::create($data);
         }
 
         return response()->json([], 201);
