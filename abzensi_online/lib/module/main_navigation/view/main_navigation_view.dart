@@ -22,6 +22,7 @@ class MainNavigationView extends StatefulWidget {
         bottomNavigationBar: BottomNavigationBar(
           currentIndex: controller.selectedIndex,
           onTap: (newIndex) => controller.updateIndex(newIndex),
+          selectedItemColor: primaryColor,
           items: [
             BottomNavigationBarItem(
               icon: Icon(
@@ -30,14 +31,8 @@ class MainNavigationView extends StatefulWidget {
               label: "Dashboard",
             ),
             BottomNavigationBarItem(
-              icon: Badge(
-                label: Text(
-                  "4",
-                  style: TextStyle(
-                    color: Colors.white,
-                  ),
-                ),
-                child: Icon(MdiIcons.history),
+              icon: Icon(
+                MdiIcons.history,
               ),
               label: "Histories",
             ),

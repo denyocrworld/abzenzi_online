@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:hyper_ui/core.dart';
+import 'package:hyper_ui/shared/app/widget/logo/logo.dart';
 
 class LoginView extends StatefulWidget {
   LoginView({Key? key}) : super(key: key);
@@ -69,21 +70,10 @@ class LoginView extends StatefulWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Icon(
-                          MdiIcons.radiusOutline,
-                          size: 96.0,
-                          color: primaryColor,
-                        )
-                            .animate()
-                            .scale(
-                              duration: 600.ms,
-                            )
-                            .move(
-                              duration: 600.ms,
-                            )
-                            .fadeIn(
-                              duration: 800.ms,
-                            ),
+                        QLogo(
+                          width: 120.0,
+                          height: 120.0,
+                        ),
                         Text(
                           "AttendMe",
                           style: TextStyle(

@@ -6,7 +6,8 @@
         "attendance_history_navigation",
         "attendance_history_list",
         "attendance_history_calendar",
-        "safe_device_info"
+        "safe_device_info",
+        "attendance_form"
     ],
     "module_directory_name": "module",
     "experimental_mode": false,
