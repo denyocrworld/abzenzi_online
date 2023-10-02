@@ -16,6 +16,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule): void
     {
         // $schedule->command('inspire')->hourly();
+/*
         $schedule->call(function () {
             $users = User::all();
             // $users = User::where("role", "user")->get();
@@ -23,6 +24,7 @@ class Kernel extends ConsoleKernel
                 NotificationService::sendFCMNotificationToUser($user->id, "Selamat, kamu mendapatkan diskon 50%", "F10045");
             }
         })->everyTenSeconds();
+*/
     }
 
     /**
