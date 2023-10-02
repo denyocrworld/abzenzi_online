@@ -1,14 +1,5 @@
 {
-    "modules": [
-        "login",
-        "location_disabled",
-        "caffe_dashboard",
-        "attendance_history_navigation",
-        "attendance_history_list",
-        "attendance_history_calendar",
-        "safe_device_info",
-        "attendance_form"
-    ],
+    "modules": [],
     "module_directory_name": "module",
     "experimental_mode": false,
     "learning_mode": false,
