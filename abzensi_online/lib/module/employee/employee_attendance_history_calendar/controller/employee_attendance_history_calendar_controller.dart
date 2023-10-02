@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:hyper_ui/core.dart';
 
@@ -37,68 +36,14 @@ class EmployeeAttendanceHistoryCalendarController
         ],
       });
     }
-    //----
     setState(() {});
   }
 
-  List<Map<DateTime, List<Map<dynamic, dynamic>>>> events = [
-    // {
-    //   DateTime(2023, 9, 23): [
-    //     {
-    //       "event_name": "Check In",
-    //       "time": "09:30",
-    //     },
-    //     {
-    //       "event_name": "Check Out",
-    //       "time": "21:30",
-    //     }
-    //   ],
-    // },
-    // {
-    //   DateTime(2023, 9, 21): [
-    //     {
-    //       "event_name": "Check In",
-    //       "time": "09:30",
-    //     },
-    //     {
-    //       "event_name": "Check Out",
-    //       "time": "21:30",
-    //     }
-    //   ],
-    // }
-  ];
-
+  List<Map<DateTime, List<Map<dynamic, dynamic>>>> events = [];
   List<Map<DateTime, List<Map<dynamic, dynamic>>>> getEvents(DateTime date) {
     var eventDate = DateTime(date.year, date.month, date.day);
     var filteredEvents =
         events.where((event) => event.keys.first == eventDate).toList();
     return filteredEvents;
   }
-
-/*
-  List<Map<DateTime, List<Map>>> getEvents() {
-    return {
-      DateTime.now(): [
-        {
-          "event_name": "Check In",
-          "time": "09:30",
-        },
-        {
-          "event_name": "Check Out",
-          "time": "21:30",
-        }
-      ],
-      DateTime.now().subtract(Duration(days: 1)): [
-        {
-          "event_name": "Check In",
-          "time": "08:30",
-        },
-        {
-          "event_name": "Check Out",
-          "time": "19:30",
-        }
-      ],
-    };
-  }
-  */
 }

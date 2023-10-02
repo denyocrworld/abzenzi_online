@@ -16,19 +16,29 @@ class DashboardMenu extends StatelessWidget {
         "view": EmployeeAttendanceFormView(),
       },
       {
+        "label": "Event",
+        "icon": Icons.event,
+        "view": Container(),
+      },
+      {
+        "label": "Slip Gaji",
+        "icon": Icons.list_alt,
+        "view": Container(),
+      },
+      {
         "label": "Cuti",
         "icon": Icons.event_note,
-        "view": EmployeeAttendanceFormView(),
+        "view": Container(),
       },
       {
         "label": "Izin",
         "icon": Icons.event_busy,
-        "view": EmployeeAttendanceFormView(),
+        "view": Container(),
       },
       {
-        "label": "Event",
-        "icon": Icons.event,
-        "view": EmployeeAttendanceFormView(),
+        "label": "Lembur",
+        "icon": Icons.event_available,
+        "view": Container(),
       },
     ];
     return GridView.builder(
