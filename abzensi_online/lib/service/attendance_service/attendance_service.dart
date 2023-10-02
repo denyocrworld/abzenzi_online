@@ -4,7 +4,11 @@ import 'package:hyper_ui/service/device_service/device_service.dart';
 import 'package:hyper_ui/service/location_service/location_service.dart';
 
 class AttendanceService {
-  Future checkin({
+  Future<(String, bool)> doSomething() async {
+    return ("OK", false);
+  }
+
+  Future<(bool, String)> checkin({
     required String photo,
   }) async {
     try {
@@ -22,16 +26,27 @@ class AttendanceService {
           "check_in_photo": photo,
         },
       );
-      Map obj = response.data;
-      bool isRecognized = obj["data"]["is_recognized"];
-      return isRecognized;
+      Map data = response.data["data"];
+      double distance = data["distance"];
+      bool isRecognized = data["is_recognized"];
+      bool isTooFar = data["is_too_far"];
+      print("Distance: $distance");
+
+      if (isTooFar) {
+        return (false, "Jarak terlalu jauh");
+      }
+
+      if (!isRecognized) {
+        return (false, "Wajah tidak dikenali");
+      }
+
+      return (true, "");
     } on Exception catch (_) {
-      print(_);
-      return false;
+      return (false, "Ada masalah pada API");
     }
   }
 
-  Future checkOut({
+  Future<(bool, String)> checkOut({
     required String photo,
   }) async {
     try {
@@ -49,12 +64,24 @@ class AttendanceService {
           "check_out_photo": photo,
         },
       );
-      Map obj = response.data;
-      bool isRecognized = obj["data"]["is_recognized"];
-      return isRecognized;
+      Map data = response.data["data"];
+      double distance = data["distance"];
+      bool isRecognized = data["is_recognized"];
+      bool isTooFar = data["is_too_far"];
+      print("Distance: $distance");
+
+      if (isTooFar) {
+        return (false, "Jarak terlalu jauh");
+      }
+
+      if (!isRecognized) {
+        return (false, "Wajah tidak dikenali");
+      }
+
+      return (true, "");
     } on Exception catch (_) {
       print(_);
-      return false;
+      return (false, "Ada masalah pada API");
     }
   }
 

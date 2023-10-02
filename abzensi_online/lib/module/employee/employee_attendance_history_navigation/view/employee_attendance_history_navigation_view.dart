@@ -22,7 +22,7 @@ class EmployeeAttendanceHistoryNavigationView extends StatefulWidget {
               ),
             ],
           ),
-          title: const Text('Order List'),
+          title: const Text('Attendance Histories'),
         ),
         body: TabBarView(
           children: [

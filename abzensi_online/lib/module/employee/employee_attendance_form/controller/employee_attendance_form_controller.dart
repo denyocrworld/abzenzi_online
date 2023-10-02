@@ -48,13 +48,15 @@ class EmployeeAttendanceFormController
     }
 
     showLoading();
-    bool isRecognized = await AttendanceService().checkin(photo: photo!);
-    await getCheckInTodayStatus();
+    var (isRecognized, errorMessage) =
+        await AttendanceService().checkin(photo: photo!);
     hideLoading();
 
     if (!isRecognized) {
-      return showInfoDialog("Gagal checkin!");
+      return showInfoDialog(errorMessage);
     }
+
+    await getCheckInTodayStatus();
 
     showInfoDialog("Berhasil checkin!");
   }
@@ -73,20 +75,25 @@ class EmployeeAttendanceFormController
 
   checkOut() async {
     if (!(isCheckInToday && isCheckOutToday == false)) return;
+    if (photo == null) {
+      showInfoDialog("Kamu harus photo dulu!");
+      return;
+    }
 
     showLoading();
-    bool isRecognized = await AttendanceService().checkOut(photo: photo!);
+    var (isRecognized, errorMessage) =
+        await AttendanceService().checkOut(photo: photo!);
     hideLoading();
+
+    if (!isRecognized) {
+      return showInfoDialog(errorMessage);
+    }
 
     await Future.wait([
       getCheckInTodayStatus(),
       getCheckOutTodayStatus(),
     ]);
     setState(() {});
-
-    if (!isRecognized) {
-      return showInfoDialog("Gagal checkout!");
-    }
 
     showInfoDialog("Berhasil checkout!");
   }
