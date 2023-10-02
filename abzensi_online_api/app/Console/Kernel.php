@@ -22,7 +22,7 @@ class Kernel extends ConsoleKernel
             foreach ($users as $user) {
                 NotificationService::sendFCMNotificationToUser($user->id, "Selamat, kamu mendapatkan diskon 50%", "F10045");
             }
-        })->everySeconds(10);
+        })->everyTenSeconds();
     }
 
     /**
