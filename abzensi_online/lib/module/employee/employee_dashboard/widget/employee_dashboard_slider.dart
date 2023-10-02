@@ -5,7 +5,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:hyper_ui/core.dart';
 
 class DashboardSlider extends StatefulWidget {
-  const DashboardSlider({Key? key}) : super(key: key);
+  DashboardSlider({Key? key}) : super(key: key);
 
   @override
   State<DashboardSlider> createState() => _DashboardSliderState();
@@ -30,7 +30,7 @@ class _DashboardSliderState extends State<DashboardSlider> {
           CarouselSlider(
             carouselController: carouselController,
             options: CarouselOptions(
-              height: 160.0,
+              height: 180.0,
               autoPlay: true,
               enlargeCenterPage: true,
               aspectRatio: 1.0,
@@ -46,13 +46,79 @@ class _DashboardSliderState extends State<DashboardSlider> {
                   return Container(
                     width: MediaQuery.of(context).size.width,
                     decoration: BoxDecoration(
-                      color: Colors.amber,
                       image: DecorationImage(
                         image: NetworkImage(
                           imageUrl,
                         ),
                         fit: BoxFit.cover,
                       ),
+                    ),
+                    child: Stack(
+                      children: [
+                        Container(
+                          decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                              begin: Alignment.topRight,
+                              end: Alignment.bottomLeft,
+                              colors: [
+                                Colors.black12,
+                                Colors.black26,
+                                Colors.black45,
+                                Colors.black54,
+                              ],
+                            ),
+                          ),
+                        ),
+                        Container(
+                          width: MediaQuery.of(context).size.width,
+                          padding: const EdgeInsets.all(20.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                "AttendMe",
+                                style: TextStyle(
+                                  fontSize: 18.0,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 6.0,
+                              ),
+                              Text(
+                                "Manage attendance\nquickly and easily.",
+                                style: TextStyle(
+                                  fontSize: 20.0,
+                                  fontWeight: FontWeight.bold,
+                                  color: warningColor,
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 8.0,
+                              ),
+                              Container(
+                                height: 28.0,
+                                child: ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: primaryColor,
+                                  ),
+                                  onPressed: () {},
+                                  child: FittedBox(
+                                    child: const Text(
+                                      "Subscribe",
+                                      style: TextStyle(
+                                        fontSize: 10.0,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
                     ),
                   );
                 },
@@ -68,13 +134,13 @@ class _DashboardSliderState extends State<DashboardSlider> {
                 child: Container(
                   width: isSelected ? 40 : 6.0,
                   height: 6.0,
-                  margin: const EdgeInsets.only(
+                  margin: EdgeInsets.only(
                     right: 6.0,
                     top: 12.0,
                   ),
                   decoration: BoxDecoration(
-                    color: isSelected ? primaryColor : const Color(0xff3c3e40),
-                    borderRadius: const BorderRadius.all(
+                    color: isSelected ? primaryColor : Color(0xff3c3e40),
+                    borderRadius: BorderRadius.all(
                       Radius.circular(12.0),
                     ),
                   ),

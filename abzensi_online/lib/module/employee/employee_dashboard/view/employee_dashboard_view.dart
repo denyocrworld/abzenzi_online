@@ -20,7 +20,7 @@ class EmployeeDashboardView extends StatefulWidget {
         actions: const [],
       ),
       body: SingleChildScrollView(
-        child: const Column(
+        child: Column(
           children: [
             DashboardSlider(),
             DashboardMenu(),
