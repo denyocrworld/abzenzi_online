@@ -2,12 +2,8 @@ import 'package:geolocator/geolocator.dart';
 import 'package:hyper_ui/core.dart';
 import 'package:flutter/material.dart';
 
-void main() async {
+Future main() async {
   await initialize();
-  runMainApp();
-}
-
-runMainApp() async {
   return runApp(const MainApp());
 }
 

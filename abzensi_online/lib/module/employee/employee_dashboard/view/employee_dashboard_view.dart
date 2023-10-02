@@ -24,6 +24,17 @@ class EmployeeDashboardView extends StatefulWidget {
           children: [
             DashboardSlider(),
             DashboardMenu(),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.red,
+              ),
+              onPressed: () async {
+                showLoading();
+                await AttendanceService().resetToday();
+                hideLoading();
+              },
+              child: const Text("Reset"),
+            ),
           ],
         ),
       ),
