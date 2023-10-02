@@ -14,6 +14,32 @@ use Illuminate\Support\Facades\Log;
 
 class AttendanceController extends Controller
 {
+    public $officeLatitude = -6.56746114281521;
+    public $officeLongitude = 106.74193809837642;
+    public $minimumDistance = 15.0;
+
+    public function calculateDistance($sourceLatitude, $sourceLongitude, $targetLatitude, $targetLongitude)
+    {
+        $earthRadius = 6371000; // Earth's radius in meters (approximately)
+
+        // Convert degrees to radians
+        $sourceLatRadians = deg2rad($sourceLatitude);
+        $sourceLongRadians = deg2rad($sourceLongitude);
+        $targetLatRadians = deg2rad($targetLatitude);
+        $targetLongRadians = deg2rad($targetLongitude);
+
+        // Haversine formula
+        $dLat = $targetLatRadians - $sourceLatRadians;
+        $dLong = $targetLongRadians - $sourceLongRadians;
+        $a = sin($dLat / 2) * sin($dLat / 2) +
+            cos($sourceLatRadians) * cos($targetLatRadians) *
+            sin($dLong / 2) * sin($dLong / 2);
+        $c = 2 * atan2(sqrt($a), sqrt(1 - $a));
+        $distance = $earthRadius * $c;
+
+        return $distance; // Distance in meters
+    }
+
     public function checkIn()
     {
         $id = request()->user()["id"];
@@ -30,23 +56,30 @@ class AttendanceController extends Controller
         $data = request()->all();
         $url = $data["check_in_photo"];
 
-        $filename = URLDownloader::download($url);
+        // tambahin logic utk check apakah koordinat-nya berjarak 10m dari kantor
+        $distanceInMeter = $this->calculateDistance(
+            $data['check_in_latitude'],
+            $data['check_in_longitude'],
+            $this->officeLatitude,
+            $this->officeLongitude,
+        );
+        $is_too_far = $distanceInMeter > $this->minimumDistance ? true : false;
+        //---------
 
+        $filename = URLDownloader::download($url);
 
         $user_face = "$id.jpg";
         $user_uploaded_face = $filename;
 
-        //TODO: FaceRecognition masih lemot, dibagian ini masih 20detik! 
         $is_recognized = FaceRecognitionService::recognize($user_face, $user_uploaded_face);
 
-        if ($is_recognized) {
+        if ($is_recognized && $is_too_far == false) {
             $attendanceService = new AttendanceService();
             $attendanceService->checkIn([
                 'user_id' => $id,
                 'check_in_device_id' => $data['check_in_device_id'],
                 'check_in_latitude' => $data['check_in_latitude'],
                 'check_in_longitude' => $data['check_in_longitude'],
-                //TODO: ini seharusnya ngambil dari field photo dari Users
                 'check_in_photo' => $url,
                 'check_in_date' => Carbon::now(),
             ]);
@@ -57,6 +90,8 @@ class AttendanceController extends Controller
         return response()->json([
             'data' => [
                 'is_recognized' => $is_recognized == "true" ? true : false,
+                'is_too_far' => $is_too_far,
+                'distance' => $distanceInMeter,
             ]
         ]);
     }
@@ -77,23 +112,33 @@ class AttendanceController extends Controller
         $data = request()->all();
         $url = $data["check_out_photo"];
 
+
+
+        // tambahin logic utk check apakah koordinat-nya berjarak 10m dari kantor
+        $distanceInMeter = $this->calculateDistance(
+            $data['check_out_latitude'],
+            $data['check_out_longitude'],
+            $this->officeLatitude,
+            $this->officeLongitude,
+        );
+        $is_too_far = $distanceInMeter > $this->minimumDistance ? true : false;
+
+
         $filename = URLDownloader::download($url);
 
         $id = request()->user()["id"];
         $user_face = "$id.jpg";
         $user_uploaded_face = $filename;
 
-        //TODO: FaceRecognition masih lemot, dibagian ini masih 20detik! 
         $is_recognized = FaceRecognitionService::recognize($user_face, $user_uploaded_face);
 
-        if ($is_recognized) {
+        if ($is_recognized && $is_too_far == false) {
             $attendanceService = new AttendanceService();
             $attendanceService->checkOut([
                 'user_id' => $id,
                 'check_out_device_id' => $data['check_out_device_id'],
                 'check_out_latitude' => $data['check_out_latitude'],
                 'check_out_longitude' => $data['check_out_longitude'],
-                //TODO: ini seharusnya ngambil dari field photo dari Users
                 'check_out_photo' => $url,
                 'check_out_date' => Carbon::now(),
             ]);
@@ -104,6 +149,8 @@ class AttendanceController extends Controller
         return response()->json([
             'data' => [
                 'is_recognized' => $is_recognized == "true" ? true : false,
+                'is_too_far' => $is_too_far,
+                'distance' => $distanceInMeter,
             ]
         ]);
     }
@@ -148,6 +195,9 @@ class AttendanceController extends Controller
         $id = request()->user()["id"];
         $attendanceService = new AttendanceService();
         $attendanceService->resetToday($id);
+
+        NotificationService::sendFCMNotificationToUser($id, "Yuk absen dulu hari ini!", "");
+
         return response()->json([
             "data" => [
                 "message" => "OK"

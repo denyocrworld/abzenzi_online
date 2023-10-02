@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "abzensi-online",
+  "private_key_id": "2660db115dc62b1575bae0ff2090f2f38520b76d",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCvefhQGGm1nqm9\n4Wb4zsdas0G2Kk0WvsLeLUQxA28qiS7hUvGfsTxmKMbqG5MACXOZmR+AdcsFWgHc\n1lHbHgLT6vjGGX4ytBRqcFY24S+bUBjqZe1FZmnVcTpnRuinmxqQUakWYOMrAnZa\nGd+S2NXGhKF0vjNal3Budz08L3OsoNlKRKDlLZ8obfAC9PcKkfhElG2qdIXL1bcZ\npcOAHoTvvqYJAO9/9WUMjHnOFKOAvm3x/1HTnmimkqpcrZs1jLSi8Gn9YM7oPdjW\nUnH+7xH5rMLkIGx2ie5sl5i2uMbl70CKxA2DFEbrUYIMdDxCfevu3CYtlKJC36l7\nOaCIgjUJAgMBAAECggEAGT7iSX21qa5Vy+5znty7BDLRg6iS1jCkPwxCqQ2OLw+1\nCbBh+GBqqOT5d0F31PPHKKRFyrjHuHGiXngMJ0rqS7xcxb1xsVBEtqqKUNN1grIT\nn5eB+y/Yjp9/cE/clY6EVBqXidNvI2cziVN7HbiqCulWhEIAB+rNP2tSyUenbACs\nOYA9oWVihagTqYh3u2STZ2X62WO6lxFVHmIWZNwtQRE7SXc3bOspnaE3YmcN1siF\n7tVQCIf3NT96q8369QY11wXHNql/P7xwjOD9um9NzbGkDG+eIGjidd8BRoG9chso\n2g3AI0tddRquwA/x5qz2mCxVyN45wttgiLZMtIPqjQKBgQDY/NDnHBnlSHTazOkn\nTNON7MUtKCCozWF89G1YYNI79c3WawFKodyJ4zfIJdRS884QoKDXCgNqfIMZ0tfG\nr7kf6Xq4F/bcKlYVJczifcqp4hcKvsKt6rwV6Pynf87ahd0k1lMDG7S5yBYRfjGj\nG6nd8IxTNXf9uqhKk3kPcWKwjQKBgQDPBoqXD/mFUrCn24OuyJ3AYOGUOBuzs+t5\n3qY63N8DRCwBD4KTbRlZxa83C/+3QqoQkNyeueKR6E8/3XaJYB2xfA+z2ka3JVT6\nc4Tiuyf/Zd6WBZhSJts6WkFVSvNme/qmoXeO96PXw1MCvKD2aX6YqdcVsazU1Nwc\nxRJCc9VtbQKBgQCP1FzgpHbhzXpvwh3WCA2+6K/2c7/aRHEXc6m7SEpypkcvlrQ/\ndTULTUqfZ7vq1GLGEMMsZx3GiwwXpPOUZsxOQ+QtfO0MGSAAWpMJmpooq43ceH/w\n6kSMPWij2osRvGPO1CYoTEgqUV+Xbs+WL3MUgytwyGNmE0EUVdaMDvt8zQKBgQDA\nva9T2tyM4qJzdKyRkldEHy6FRwOLd8uYh9CtZqr+KH7rcdw4k08RxDlPf41QufEJ\nQUUVRayJ+QWnSPEuDt02O3GHGYXSxx/pmJk0WdhwMBBeDdF1UpWyKws+dGxNksmW\nTye3ZBkXLNNg7erR3v+s9Bq6KNPmxlIzOsq4MY2XtQKBgFr3mEfihHfobVbtP5OD\nyD3k5+Jb/34G4q6kWhNPCdTWFZe5udMHmKDoMPJZ12AL8+Y9OZKlYZrw7Gc1PcCn\np2yw1AD5auFMU3HYVfPqsuvAtUORJ0BlRrzkLXeE2CDunJHWwrM6bTTFFuxUqJTW\nZUG3/VxyZm4fi7qfbZuNFPov\n-----END PRIVATE KEY-----\n",
+  "client_email": "serviceaccountsaya@abzensi-online.iam.gserviceaccount.com",
+  "client_id": "101025249585189133512",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/serviceaccountsaya%40abzensi-online.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

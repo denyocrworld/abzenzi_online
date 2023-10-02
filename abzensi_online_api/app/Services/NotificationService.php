@@ -31,9 +31,10 @@ class NotificationService
                     'title' => $title,
                     'body' => $body,
                 ],
+                //payload
                 "data" => [
-                    "key1" =>  "value1",
-                    "key2" =>  "value2"
+                    "title" =>  $title,
+                    "body" =>  $body
                 ]
             ],
         ];

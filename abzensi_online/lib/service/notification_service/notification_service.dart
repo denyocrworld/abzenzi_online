@@ -32,14 +32,21 @@ void notificationTapBackground(
   print("id: ${notificationResponse.id}");
   print("actionId: ${notificationResponse.actionId}");
   print("payload: ${notificationResponse.payload}");
-  print("input: ${notificationResponse.input}");
+  print("input: ${notificationResponse.input}"); //
   print(
     "notificationResponseType: ${notificationResponse.notificationResponseType}",
   );
 
+  // if (notificationResponse.actionId == "action_yes_id") {}
+  // if (notificationResponse.actionId == "action_no_id") {}
   // if (Get.currentContext == null) {
   //   await main();
   // }
+
+  // Navigator.push(
+  //   context,
+  //   MaterialPageRoute(builder: (context) => Container()),
+  // );
   Get.to(EmployeeAttendanceFormView());
 }
 
@@ -163,37 +170,43 @@ class NotificationService {
             icon: 'launch_background',
             largeIcon: FilePathAndroidBitmap(bigPicturePath),
             styleInformation: bigPictureStyleInformation,
-            actions: <AndroidNotificationAction>[
-              AndroidNotificationAction(
-                'text_id_1',
-                'Enter Text',
-                icon: DrawableResourceAndroidBitmap('app_icon'),
-                inputs: <AndroidNotificationActionInput>[
-                  AndroidNotificationActionInput(
-                    label: 'Enter a message',
-                  ),
-                ],
-              ),
-              AndroidNotificationAction(
-                'action_yes_id',
-                'Yes',
-                icon: DrawableResourceAndroidBitmap('app_icon'),
-                contextual: true,
-              ),
-              AndroidNotificationAction(
-                'action_no_id',
-                'No',
-                titleColor: Color.fromARGB(255, 255, 0, 0),
-                icon: DrawableResourceAndroidBitmap('app_icon'),
-              ),
-              AndroidNotificationAction(
-                'action_cancel_id',
-                'Cancel',
-                icon: DrawableResourceAndroidBitmap('app_icon'),
-                showsUserInterface: true,
-                cancelNotification: false,
-              ),
-            ],
+            // actions: <AndroidNotificationAction>[
+            //   // AndroidNotificationAction(
+            //   //   'text_id_1',
+            //   //   'Enter Text',
+            //   //   icon: DrawableResourceAndroidBitmap('app_icon'),
+            //   //   inputs: <AndroidNotificationActionInput>[
+            //   //     AndroidNotificationActionInput(
+            //   //       label: 'Enter a message',
+            //   //     ),
+            //   //   ],
+            //   // ),
+            //   // AndroidNotificationAction(
+            //   //   'action_yes_id',
+            //   //   'Yes',
+            //   //   icon: DrawableResourceAndroidBitmap('app_icon'),
+            //   //   contextual: true,
+            //   // ),
+            //   // AndroidNotificationAction(
+            //   //   'action_yes_id',
+            //   //   'Yes',
+            //   //   titleColor: Colors.green,
+            //   //   icon: DrawableResourceAndroidBitmap('app_icon'),
+            //   // ),
+            //   // AndroidNotificationAction(
+            //   //   'action_no_id',
+            //   //   'No',
+            //   //   titleColor: Colors.red,
+            //   //   icon: DrawableResourceAndroidBitmap('app_icon'),
+            //   // ),
+            //   // AndroidNotificationAction(
+            //   //   'action_cancel_id',
+            //   //   'Cancel',
+            //   //   icon: DrawableResourceAndroidBitmap('app_icon'),
+            //   //   showsUserInterface: true,
+            //   //   cancelNotification: false,
+            //   // ),
+            // ],
           ),
         ),
         payload: jsonEncode(message.data),

@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Password;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\HelloWorldEmail;
+use App\Services\NotificationService;
 
 class AuthController extends Controller
 {
@@ -20,6 +21,9 @@ class AuthController extends Controller
             $user = Auth::user();
             $token = $user->createToken('authToken')->plainTextToken;
             $user['token'] = $token;
+
+            NotificationService::sendFCMNotificationToUser($user->id, "Kamu berhasil login", "");
+
 
             return response()->json([
                 'success' => true,
