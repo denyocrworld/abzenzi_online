@@ -1,5 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:hyper_ui/env.dart';
+import 'package:hyper_ui/module/employee/employee_attendance_history_calendar/controller/employee_attendance_history_calendar_controller.dart';
+import 'package:hyper_ui/module/employee/employee_attendance_history_list/controller/employee_attendance_history_list_controller.dart';
 import 'package:hyper_ui/service/device_service/device_service.dart';
 import 'package:hyper_ui/service/location_service/location_service.dart';
 

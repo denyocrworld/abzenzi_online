@@ -15,13 +15,21 @@ class EmployeeAttendanceHistoryListView extends StatefulWidget {
         itemBuilder: (BuildContext context, int index) {
           var item = controller.histories[index];
 
-          var checkInDate = DateTime.parse(item["check_in_date"]);
-          var checkOutDate = DateTime.parse(item["check_out_date"]);
-          var day = DateFormat("dd").format(checkInDate);
+          var checkInDate = DateTime.tryParse(item["check_in_date"]);
+          var checkOutDate = item["check_out_date"] == null
+              ? null
+              : DateTime.tryParse(item["check_out_date"]);
+
+          var day = DateFormat("dd").format(checkInDate!);
           var month = DateFormat("MMM").format(checkInDate);
 
-          var fCheckInDate = DateFormat("d MMM y kk:mm").format(checkInDate);
-          var fCheckOutDate = DateFormat("d MMM y kk:mm").format(checkOutDate);
+          var fCheckInDate = "-";
+          var fCheckOutDate = "-";
+
+          fCheckInDate = DateFormat("kk:mm").format(checkInDate);
+          fCheckOutDate = checkOutDate == null
+              ? "-"
+              : DateFormat("kk:mm").format(checkOutDate);
 
           return Container(
             padding: const EdgeInsets.all(12.0),
@@ -43,8 +51,8 @@ class EmployeeAttendanceHistoryListView extends StatefulWidget {
             child: Row(
               children: [
                 Container(
-                  width: 64.0,
-                  height: 64.0,
+                  width: 42.0,
+                  height: 42.0,
                   child: Column(
                     children: [
                       Expanded(
@@ -60,7 +68,7 @@ class EmployeeAttendanceHistoryListView extends StatefulWidget {
                       Text(
                         "$month",
                         style: TextStyle(
-                          fontSize: 16.0,
+                          fontSize: 12.0,
                         ),
                       ),
                     ],
@@ -82,22 +90,26 @@ class EmployeeAttendanceHistoryListView extends StatefulWidget {
                       const SizedBox(
                         height: 6.0,
                       ),
-                      Text(
-                        "Check In: $fCheckInDate",
-                        style: TextStyle(
-                          fontSize: 12.0,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 6.0,
-                      ),
-                      Text(
-                        "Check Out: $fCheckOutDate",
-                        style: TextStyle(
-                          fontSize: 12.0,
-                          fontWeight: FontWeight.bold,
-                        ),
+                      Row(
+                        children: [
+                          Text(
+                            "$fCheckInDate",
+                            style: TextStyle(
+                              fontSize: 16.0,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          const SizedBox(
+                            width: 8.0,
+                          ),
+                          Text(
+                            "$fCheckOutDate",
+                            style: TextStyle(
+                              fontSize: 16.0,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          )
+                        ],
                       ),
                     ],
                   ),
